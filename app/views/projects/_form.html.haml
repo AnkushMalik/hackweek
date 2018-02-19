@@ -14,12 +14,20 @@
     = f.text_field :title, placeholder: 'Project title', class: 'form-control input-lg', required: 'required'
 
   .panel.panel-default
-    .panel-heading
+    .panel-heading{style: 'display:flex; justify-content: space-between'}
       %ul.nav.nav-pills
         %li.active#show-source{ role: :presentation }
           %a{ href: '#markdown-source', role: :tab, data: { toggle: :tab } } Edit
         %li#show-preview{ role: :presentation }
           %a{ href: '#markdown-preview', role: :tab, data: { toggle: :tab } } Preview
+      .btnbar
+        %a.btn.btn-default{onclick: "$('#project_description').append(' @');$('#project_description')[0].click();"}
+          %i.fa.fa-at
+        %a.btn.btn-default{onclick: "$('#project_description').append(' :');$('#project_description')[0].click();"}
+          %i.fa.fa-smile-o
+        %a.btn.btn-default{onclick: "$('#project_description').append(' [this](link-here)');$('#project_description')[0].click();"}
+          %i.fa.fa-link
+
     .panel-body
       .tab-content
         #markdown-source.tab-pane.active.fade.in{ role: 'tab-pane' }
