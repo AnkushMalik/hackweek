@@ -12,6 +12,7 @@
  *= require strap-on.css.scss
  *= require font-awesome
  *= require selectize
+ *=require jquery.atwho
  *= require selectize.bootstrap3
  *= require swipebox.css.scss
  *= require hackweek.css.scss

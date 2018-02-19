@@ -9,6 +9,7 @@ gem 'rails', '~> 4.2'
 # To speedup app startup
 gem 'spring', group: [:development, :test]
 gem 'spring-commands-rspec', group: [:development, :test]
+gem 'jquery-atwho-rails', '~> 1.3', '>= 1.3.2'
 
 # Misc tools for fancy development
 group :development, :test do
