@@ -65,8 +65,10 @@ class User < ActiveRecord::Base
     recommended = []
     self.keywords.each do |word|
       if episode
+        puts "****************************************1"
         projects = word.projects.select { |p| p.episodes.include?(episode)  }
       else
+        puts "****************************************2"
         projects = word.projects
       end
       projects.each do |p|
@@ -77,9 +79,24 @@ class User < ActiveRecord::Base
           recommended << p
         end
       end
+      #(Project.all - projects).each do
     end
     recommended.uniq
   end
+
+  # def recommended_projects(episode = nil)
+  #   if self.keywords.empty?
+  #     return []
+  #   end
+  #   recommended = []
+  #   Episode.order('created_at DESC').each.do |epi|
+  #   epi.projects.order('created_at DESC').each do |p|
+  #     next unless p.active?
+  #     unless (p.keywords & User.first.keywords).empty?
+  #       recommended << p
+  #
+  #
+  # end
 
   def self.for_ichain_username(username, attributes)
     user = find_by(name: username)
