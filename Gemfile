@@ -25,7 +25,7 @@ end
 
 # as databases
 gem 'mysql2'
-# for stylesheets
+gem 'impressionist'
 gem 'sass-rails',   '~> 5.0'
 # for .js.coffee assets
 gem 'coffee-rails', '~> 4.1.0'

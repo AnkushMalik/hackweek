@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:add_keyword, :delete_keyword ]
   skip_load_and_authorize_resource only: :old_archived
   before_action :load_episode
+  impressionist actions: [:show], unique: [:user_id]
 
   # GET /projects
   # GET /projects.rss
@@ -47,6 +48,10 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
+    impressionist(@project)
+    puts "****************************************"
+    @project.impressionist_count(:filter=>:params)
+    puts "****************************************"
     @previous_project = @project.previous(@episode)
     @next_project = @project.next(@episode)
     @new_comment = Comment.new

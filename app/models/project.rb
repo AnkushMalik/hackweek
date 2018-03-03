@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
   include AASM
+  is_impressionable
 
   validates :title, presence: true
   validate  :title_contains_letters?
