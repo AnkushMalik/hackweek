@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180302175121) do
+ActiveRecord::Schema.define(version: 20180304050324) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "title",         limit: 255
@@ -113,8 +113,8 @@ ActiveRecord::Schema.define(version: 20180302175121) do
   create_table "projects", force: :cascade do |t|
     t.text     "title",               limit: 65535
     t.text     "description",         limit: 65535
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.integer  "originator_id",       limit: 4
     t.integer  "likes_count",         limit: 4
     t.integer  "memberships_count",   limit: 4
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 20180302175121) do
     t.integer  "avatar_file_size",    limit: 4
     t.datetime "avatar_updated_at"
     t.string   "url",                 limit: 255
+    t.integer  "projhits",            limit: 4,     default: 0
   end
 
   create_table "roles", force: :cascade do |t|
