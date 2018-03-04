@@ -2,18 +2,27 @@
 
 = form_for [ parent, comment ], html: {role: "form"} do |f|
   %p
-    %ul.nav.nav-tabs
-      %li.active#show-source{ role: :presentation }
-        %a{ href: '#markdown-source', role: :tab, data: { toggle: :tab } } Edit
-      %li#show-preview{ role: :presentation }
-        %a{ href: '#markdown-preview', role: :tab, data: { toggle: :tab } } Preview
-    .tab-content
-      #markdown-source.tab-pane.active.fade.in{ role: 'tab-pane' }
-        = f.text_area :text, :placeholder => "Your comment. You can use markdown.", :class => 'form-control input-lg markdown-source-text', :required => "required"
-      #markdown-preview.tab-pane.fade{ role: 'tab-pane' }
-        #loading-spinner
-          = fa_icon 'spinner pulse 3x'
-        #preview-contents.hidden
+    .comment-form-heading{style: 'display:flex; justify-content: space-between'}
+      %ul.nav.nav-tabs
+        %li.active#show-source{ role: :presentation }
+          %a{ href: '#markdown-source', role: :tab, data: { toggle: :tab } } Edit
+        %li#show-preview{ role: :presentation }
+          %a{ href: '#markdown-preview', role: :tab, data: { toggle: :tab } } Preview
+      .btnbar
+        %a.btn.btn-default{onclick: "$('#comment_field').append(' @');$('#comment_field')[0].click();"}
+          %i.fa.fa-at
+        %a.btn.btn-default{onclick: "$('#comment_field').append(' :');$('#comment_field')[0].click();"}
+          %i.fa.fa-smile-o
+        %a.btn.btn-default{onclick: "$('#comment_field').append(' [this](link-here)');$('#comment_field')[0].click();"}
+          %i.fa.fa-link
+    .comment-form-body
+      .tab-content
+        #markdown-source.tab-pane.active.fade.in{ role: 'tab-pane' }
+          = f.text_area :text, :placeholder => "Your comment. You can use markdown.", :class => 'form-control input-lg markdown-source-text', id: 'comment_field', :required => "required"
+        #markdown-preview.tab-pane.fade{ role: 'tab-pane' }
+          #loading-spinner
+            = fa_icon 'spinner pulse 3x'
+          #preview-contents.hidden
 
   %p
     = button_tag(type: 'submit', class: "btn btn-success pull-right") do

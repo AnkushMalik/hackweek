@@ -15,7 +15,7 @@
         .img-wrapper
           = image_tag @project.avatar.url(:thumb), width: '32'
           = @project.title
-          %br
+          = @project.impressionist_count(filter: :user_id)
           %small
             = render :partial => "projects/state_name", :locals => {:project =>  @project }
             by
