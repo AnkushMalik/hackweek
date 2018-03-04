@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
   # GET /projects.rss
   def index
     @projects = Project.current(@episode).active.includes(:episode_project_associations, :originator, :users, :kudos).
-        order('episodes_projects.created_at DESC').references(:episodes_projects).page(params[:page]).per(params[:page_size])
+        order('projhits ASC').references(:episodes_projects).page(params[:page]).per(params[:page_size])
     @newest = @projects.first(10)
     respond_to do |format|
       format.html { render }
@@ -49,12 +49,10 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   def show
     impressionist(@project)
-    puts "****************************************"
-    @project.impressionist_count(:filter=>:params)
-    puts "****************************************"
     @previous_project = @project.previous(@episode)
     @next_project = @project.next(@episode)
     @new_comment = Comment.new
+    @project.update_attributes(projhits: @project.impressionist_count(:filter=>:user_id) + @project.kudos.size)
   end
 
   # GET /archive/projects/:id
@@ -146,6 +144,7 @@ class ProjectsController < ApplicationController
       format.html{ redirect_to project_path(@episode, @project), notice: "Thank you for your love #{current_user.name}!" }
       format.js { render partial: 'like_toggle' }
     end
+    @project.update_attributes(projhits: @project.impressionist_count(:filter=>:user_id) + @project.kudos.size)
   end
 
   # PUT /projects/1/dislike
@@ -156,6 +155,7 @@ class ProjectsController < ApplicationController
       format.html{ redirect_to project_path(@episode, @project), notice: "Aaww Snap! You don't love me anymore?" }
       format.js { render partial: 'like_toggle' }
     end
+    @project.update_attributes(projhits: @project.impressionist_count(:filter=>:user_id) + @project.kudos.size)
   end
 
   # PUT /projects/1/add_keyword
