@@ -10,6 +10,7 @@ gem 'rails', '~> 4.2'
 gem 'spring', group: [:development, :test]
 gem 'spring-commands-rspec', group: [:development, :test]
 gem 'jquery-atwho-rails', '~> 1.3', '>= 1.3.2'
+gem 'jbuilder', '~> 2.5'
 
 # Misc tools for fancy development
 group :development, :test do

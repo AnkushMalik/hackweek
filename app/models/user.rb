@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   has_many :projects, through: :memberships
   has_many :announcements, through: :enrollments
   has_many :favourites, through: :likes, source: :project
-
+  has_many :notifications, foreign_key: :recipient_id
   has_many :user_interests
   has_many :keywords, through: :user_interests
 

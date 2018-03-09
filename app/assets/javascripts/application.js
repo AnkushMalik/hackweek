@@ -19,6 +19,7 @@
 //= require selectize
 //= require jquery.table-filter.js
 //= require jquery.swipebox.js
+//= require notifications
 
 $(function() {
   // add a hash to the URL when the user clicks on a tab

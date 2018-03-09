@@ -144,6 +144,7 @@ class ProjectsController < ApplicationController
       format.html{ redirect_to project_path(@episode, @project), notice: "Thank you for your love #{current_user.name}!" }
       format.js { render partial: 'like_toggle' }
     end
+    Notification.create(recipient: @project.originator,actor: current_user,action: "liked your Project",notifiable: @project)
     @project.update_attributes(projhits: @project.impressionist_count(:filter=>:user_id) + @project.kudos.size)
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180304050324) do
+ActiveRecord::Schema.define(version: 20180305021637) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "title",         limit: 255
@@ -101,6 +101,18 @@ ActiveRecord::Schema.define(version: 20180304050324) do
     t.integer  "user_id",    limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "recipient_id",    limit: 4
+    t.integer  "actor_id",        limit: 4
+    t.string   "action",          limit: 255
+    t.integer  "notifiable_id",   limit: 4
+    t.string   "notifiable_type", limit: 255
+    t.string   "string",          limit: 255
+    t.datetime "read_at"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "project_interests", force: :cascade do |t|

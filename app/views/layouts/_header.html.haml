@@ -83,4 +83,12 @@
       %form{:role=>"search", :method=>"get", :class=>"navbar-form navbar-right", :action=>"#{search_path}", "accept-charset"=>"UTF-8"}
         .form-group
         = search_field_tag(:q, nil, {:class => "form-control", :placeholder => "Search", :type => "search", :name => "q"})
-      
+      - if user_signed_in?
+        %ul.nav.navbar-nav.navbar-right.hidden-xs
+          %li.dropdown
+            %a.dropdown-toggle.nav-link{"data-toggle" => "dropdown", :href => "#", :id => "notification_dropdown_activator", 'data-behavior': 'notifications'}
+              %i.fa.fa-bell-o
+              %span#notification_count.new.badge{style: 'display: none'}
+              %b.caret
+            %ul.dropdown-menu#notification_dropdown
+              %li.dropdown-item{"data-behavior": 'notifications-link'} No New Notifications
