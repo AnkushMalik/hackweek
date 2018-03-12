@@ -145,6 +145,8 @@ class ProjectsController < ApplicationController
       format.js { render partial: 'like_toggle' }
     end
     Notification.create(recipient: @project.originator,actor: current_user,action: "liked your Project",notifiable: @project)
+    @u = User.last
+    NotifyMailer.notify_kudos(@u, current_user, @project).deliver_now
     @project.update_attributes(projhits: @project.impressionist_count(:filter=>:user_id) + @project.kudos.size)
   end
 
