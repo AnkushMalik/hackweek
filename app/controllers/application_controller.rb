@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :load_news
   before_filter :set_episode
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
 
   before_filter do
     resource = controller_name.singularize.to_sym

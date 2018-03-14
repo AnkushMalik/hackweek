@@ -10,6 +10,6 @@ class NotifyMailer < ApplicationMailer
     @actor = actor
     @project = project
 
-    mail to: @user.email, subject: @actor.name + 'upvoted your project'
+    mail to: @user.email, subject: @actor.name + ' upvoted your project'
   end
 end

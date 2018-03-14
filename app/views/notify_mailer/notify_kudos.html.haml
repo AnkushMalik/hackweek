@@ -1,8 +1,9 @@
-%h1 
-	Hi
+%h2
+	Hi,
 	= @user.name
 	
 %p
-	= @actor.name + ' liked your project :'
+	= link_to @actor.name, user_url(id: @user.id)
+	%span just liked a Hackweek: Marchax project you are watching:
 	= link_to @project.title, project_url(id: @project.id) 
 

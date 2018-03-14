@@ -21,4 +21,11 @@ module ApplicationHelper
       'active' if page_size.to_i == param.to_i
     end
   end
+
+  def emojify(content)
+    h(content).to_str.gsub(/:([\w+-]+):/) do |match|
+      %(![cmt-emoji](https://assets-cdn.github.com/images/icons/emoji/#{match.to_str.tr(':','')}.png))      
+    end.html_safe if content.present?
+  end
+
 end
