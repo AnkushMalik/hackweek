@@ -8,7 +8,20 @@
       = link_to user_path(comment.commenter) do
         = comment.commenter.name
       |
-      = link_to 'Reply', new_comment_comment_path( comment )
+      = link_to 'Reply', '#', "data-toggle" => "modal", 'data-target' => "#replyModal_#{comment.id}"
+      .modal.fade{id: "replyModal_#{comment.id}","aria-labelledby" => "replyModalLabel", role: "dialog", tabindex: "-1"}
+        .modal-dialog{role: "document"}
+          .modal-content
+            .modal-header
+              %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
+                %span{"aria-hidden" => "true"} ×
+              %h2#replyModalLabel.modal-title{ style: 'text-align: center'} Reply to : #{comment.commenter.name}
+            .modal-body
+              %h4
+                :markdown
+                  #{ emojify comment.text }
+              %hr
+              = render partial: 'comments/form', locals: { comment: @new_comment, parent: comment }
     %p
       :markdown
         #{ emojify comment.text }
