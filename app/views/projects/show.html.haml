@@ -106,7 +106,7 @@
       = render :partial => 'comments/comment', :collection => @project.comments
     %p
       - if current_user
-        = render partial: 'comments/form', locals: { comment: @new_comment, parent: @project }
+        = render partial: 'comments/form', locals: { comment: @new_comment, parent: @project, unique_id: ''}
 
 - content_for :script do
   :javascript

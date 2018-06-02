@@ -21,7 +21,8 @@
                 :markdown
                   #{ emojify comment.text }
               %hr
-              = render partial: 'comments/form', locals: { comment: @new_comment, parent: comment }
+              - unique_id = rand(36**10).to_s(36).upcase[0,5]
+              = render partial: 'comments/form', locals: { comment: @new_comment, parent: comment, unique_id: unique_id}
     %p
       :markdown
         #{ emojify comment.text }

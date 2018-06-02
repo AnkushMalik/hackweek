@@ -1,4 +1,4 @@
-$('#preview-contents').html("<%=j raw @rendered %>");
-$('#loading-spinner').addClass('hidden');
-$('#preview-contents').removeClass('hidden');
+$("#preview-contents<%=params[:element_id]%>").html("<%=j raw @rendered %>");
+$("#loading-spinner<%=params[:element_id]%>").addClass('hidden');
+$("#preview-contents<%=params[:element_id]%>").removeClass('hidden');
 $('input[name="authenticity_token"]').val('<%= form_authenticity_token %>');

@@ -42,19 +42,21 @@ $(function() {
 });
 
 $(function() {
-  $('#show-preview').click(
+  $("[id*='show-preview']").click(
     function() {
-      var text = $('.markdown-source-text').val();
-      $.ajax('/markdown/preview.js?source=' + encodeURIComponent(text));
+      unique_id = '';
+      var text = $(this).closest('form').find('textarea').val();
+      if ($(this)[0].id.slice(-5) != 'eview') unique_id = $(this)[0].id.slice(-5);
+      $.ajax('/markdown/preview.js?source=' + encodeURIComponent(text) + '&element_id='+ unique_id);
     });
 });
 
 $(function() {
-  $('#show-source').click(
+  $("[id*='show-source']").click(
     setTimeout(
       function () {
-        $('#preview-contents').addClass('hidden');
-        $('#loading-spinner').removeClass('hidden');
+        $(this).closest('form').find('#preview-contents').addClass('hidden');
+        $(this).closest('form').find('#loading-spinner').removeClass('hidden');
       }, 200
     )
   );
