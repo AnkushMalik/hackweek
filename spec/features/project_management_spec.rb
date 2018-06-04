@@ -90,6 +90,25 @@ feature 'Project management' do
     expect(page).to have_css('strong', text: 'bold')
   end
 
+  scenario 'User wants to reply a comment', :js do
+    project = create(:idea, :with_comments, originator: user)
+    reply_text = Faker::Lorem.sentence
+    
+    visit project_path(nil, project)
+    first_comment = project.comments.first
+    click_link 'Reply', match: :first
+
+    expect(page).to have_text first_comment.text
+    expect(page).to have_css("#replyModal_#{first_comment.id}.modal.in")
+
+    @modal = find '.modal.fade.in'
+    @modal.find("textarea[id$='comment_text']").set reply_text
+
+    expect {
+      @modal.find('button[name="button"]').click
+    }.to change(first_comment.comments, :count).by(1)
+  end
+
   scenario 'User uses markdown preview button while writing a comment', :js do
     project = create(:invention, originator: user, users: [user])
 

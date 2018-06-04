@@ -44,10 +44,10 @@ $(function() {
 $(function() {
   $("[id*='show-preview']").click(
     function() {
-      unique_id = '';
+      id = '';
       var text = $(this).closest('form').find('textarea').val();
-      if ($(this)[0].id.slice(-5) != 'eview') unique_id = $(this)[0].id.slice(-5);
-      $.ajax('/markdown/preview.js?source=' + encodeURIComponent(text) + '&element_id='+ unique_id);
+      if ($(this)[0].id.slice(-5) != 'eview') id = $(this)[0].id.slice(-5);
+      $.ajax('/markdown/preview.js?source=' + encodeURIComponent(text) + '&element_id='+ id);
     });
 });
 

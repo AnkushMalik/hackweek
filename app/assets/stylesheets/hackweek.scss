@@ -33,6 +33,15 @@ img[alt="add-emoji"] {
   justify-content: space-between;
 }
 
+[id*="replyModal_"]{
+  h2{
+    text-align: center;
+  }
+  p:last-child{
+    padding-bottom: 1.5rem;
+  }
+}
+
 footer {
   position: absolute;
   bottom: 0;

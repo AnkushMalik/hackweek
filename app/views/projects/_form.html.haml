@@ -1,4 +1,4 @@
-= render partial: 'comments/help'
+= render partial: 'comments/help',  locals: {id: ''}
 = form_for @project, url: (@project.new_record? ? projects_path : project_path(@episode, @project)), html: { role: :form } do |f|
   - if @project.errors.any?
     .alert.alert-warning

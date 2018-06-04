@@ -1,4 +1,4 @@
-#help{:class=>"collapse"}
+%div{ id: "help#{id}", class: 'collapse' }
   %pre
     :preserve
       # A First Level Header
@@ -19,9 +19,9 @@
 
       This is a project link hw#some-cool-title
 
-  %p.text-right{:style=>"margin-bottom: 10px;"}
+  %p.text-right{style: 'margin-bottom: 10px;'}
     = link_to "More Complex Markdown Help", "http://daringfireball.net/projects/markdown/syntax", target: "_blank"
 %p.text-right
-  %a{:type=>"button", "data-toggle"=>"collapse", "data-target"=>"#help", :class=>"btn btn-default btn-xs"}
+  %a{type: 'button', 'data-toggle': 'collapse', 'data-target': "#help#{id}", class: 'btn btn-default btn-xs'}
     %i.fa.fa-question
     Help

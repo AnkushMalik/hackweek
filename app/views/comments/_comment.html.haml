@@ -8,24 +8,24 @@
       = link_to user_path(comment.commenter) do
         = comment.commenter.name
       |
-      = link_to 'Reply', '#', "data-toggle" => "modal", 'data-target' => "#replyModal_#{comment.id}"
-      .modal.fade{id: "replyModal_#{comment.id}","aria-labelledby" => "replyModalLabel", role: "dialog", tabindex: "-1"}
-        .modal-dialog{role: "document"}
+      = link_to('Reply', '#', data: { toggle: 'modal', target: "#replyModal_#{comment.id}" })
+      .modal.fade{id: "replyModal_#{comment.id}",'aria-labelledby': 'replyModalLabel', role: 'dialog', tabindex: '-1'}
+        .modal-dialog{role: 'document'}
           .modal-content
             .modal-header
-              %button.close{"aria-label" => "Close", "data-dismiss" => "modal", type: "button"}
-                %span{"aria-hidden" => "true"} ×
-              %h2#replyModalLabel.modal-title{ style: 'text-align: center'} Reply to : #{comment.commenter.name}
+              %button.close{'aria-label': 'Close', 'data-dismiss': 'modal', type: 'button'}
+                %span{'aria-hidden': 'true'} ×
+              %h2#replyModalLabel.modal-title Reply to : #{comment.commenter.name}
             .modal-body
               %h4
                 :markdown
                   #{ emojify comment.text }
               %hr
-              - unique_id = rand(36**10).to_s(36).upcase[0,5]
-              = render partial: 'comments/form', locals: { comment: @new_comment, parent: comment, unique_id: unique_id}
+              - id = rand(36**10).to_s(36).upcase[0,5]
+              = render partial: 'comments/form', locals: { comment: @new_comment, parent: comment, id: id}
     %p
       :markdown
         #{ emojify comment.text }
     - if !comment.comments.empty?
       %ul.media-list
-        = render :partial => 'comments/comment', :collection => comment.comments, object: comment
+        = render partial: 'comments/comment', collection: comment.comments, object: comment

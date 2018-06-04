@@ -1,22 +1,22 @@
-= render :partial => 'comments/help'
+= render :partial => 'comments/help', locals: { id: id}
 = form_for [ parent, comment ], html: {role: "form"} do |f|
   %p
     .comment-form-heading
       %ul.nav.nav-tabs
-        %li.active{ id: "show-source#{unique_id}", role: :presentation }
-          %a{ href: "#markdown-source#{unique_id}", role: :tab, data: { toggle: :tab } } Edit
-        %li{ id: "show-preview#{unique_id}", role: :presentation }
-          %a{ href: "#markdown-preview#{unique_id}", role: :tab, data: { toggle: :tab } } Preview
+        %li.active{ id: "show-source#{id}", role: :presentation }
+          %a{ href: "#markdown-source#{id}", role: :tab, data: { toggle: :tab } } Edit
+        %li{ id: "show-preview#{id}", role: :presentation }
+          %a{ href: "#markdown-preview#{id}", role: :tab, data: { toggle: :tab } } Preview
       .btnbar
         = render 'shared/editor_buttons'
     .comment-form-body
       .tab-content
-        .tab-pane.active.fade.in{id: "markdown-source#{unique_id}", role: 'tab-pane' }
+        .tab-pane.active.fade.in{id: "markdown-source#{id}", role: 'tab-pane' }
           = f.text_area :text, :placeholder => "Your comment. You can use markdown.", :class => 'form-control input-lg markdown-source-text', :required => "required"
-        .tab-pane.fade{ id: "markdown-preview#{unique_id}", role: 'tab-pane' }
-          %div{ id: "loading-spinner#{unique_id}"}
+        .tab-pane.fade{ id: "markdown-preview#{id}", role: 'tab-pane' }
+          %div{ id: "loading-spinner#{id}"}
             = fa_icon 'spinner pulse 3x'
-          .hidden{ id: "preview-contents#{unique_id}"}
+          .hidden{ id: "preview-contents#{id}"}
 
   %p
     = button_tag(type: 'submit', class: "btn btn-success pull-right") do
