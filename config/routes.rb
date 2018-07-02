@@ -62,6 +62,8 @@ Hackweek::Application.routes.draw do
     end
   end
 
+  resources :notifications
+
   resources :episodes do
     member do
       get "activate"
