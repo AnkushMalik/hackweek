@@ -132,6 +132,9 @@ GEM
       concurrent-ruby (~> 1.0)
     innertube (1.1.0)
     jaro_winkler (1.5.1)
+    jbuilder (2.7.0)
+      activesupport (>= 4.2.0)
+      multi_json (>= 1.2)
     joiner (0.3.4)
       activerecord (>= 4.1.0)
     jquery-atwho-rails (1.5.4)
@@ -364,6 +367,7 @@ DEPENDENCIES
   haml-rails
   hirb
   hoptoad_notifier (~> 2.3)
+  jbuilder
   jquery-atwho-rails
   jquery-cookie-rails
   jquery-hotkeys-rails

@@ -62,7 +62,11 @@ Hackweek::Application.routes.draw do
     end
   end
 
-  resources :notifications
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
+  end
 
   resources :episodes do
     member do

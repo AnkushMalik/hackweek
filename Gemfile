@@ -45,6 +45,7 @@ gem 'jquery-rails'
 gem 'jquery-hotkeys-rails'
 gem 'jquery-cookie-rails'
 gem 'jquery-atwho-rails'
+gem 'jbuilder'
 # as templating language
 gem 'haml-rails'
 # as authentification framework
