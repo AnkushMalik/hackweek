@@ -93,9 +93,12 @@
           %li.dropdown
             %a.dropdown-toggle.nav-link{'data-toggle': 'dropdown', href: '#', id: 'notification-dropdown-activator', 'data-behavior': 'notifications'}
               %i.fa.fa-bell-o
-              %span#notification-count.new.badge{style: 'display: none'}
+              %span#notification-count.new.badge
               %b.caret
-            %ul.dropdown-menu#notification-dropdown
-              %li.dropdown-item{'data-behavior': 'notifications-link'} No New Notifications
-              %li{'data-behavior': 'notifications-link'}
-                %a{href: '#'} Older Notification
+            .dropdown-menu
+              %h5 Notifications
+              %hr
+              %ul#notification-dropdown
+                %li.dropdown-item{'data-behavior': 'notifications-link'} No New Notifications
+                %li{'data-behavior': 'notifications-link'}
+                  %a{href: '#'} Older Notification

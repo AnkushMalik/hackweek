@@ -4,7 +4,13 @@ json.array! @notifications do |notification|
 	json.actor notification.actor
 	json.action notification.action
 	json.notifiable notification.notifiable
-	if notification.notifiable.class == Project
-		json.url "/projects/#{notification.notifiable.id}"
+	json.avatar notification.notifiable.avatar.url(:thumb)
+
+	if notification.notifiable.avatar.url(:thumb).slice(0..5) == 'avatar'
+		json.avatar "/assets/#{notification.notifiable.avatar.url(:thumb)}"
+	else
+		json.avatar notification.notifiable.avatar.url(:thumb)
 	end
+
+	json.url "/projects/#{notification.notifiable.id}"
 end

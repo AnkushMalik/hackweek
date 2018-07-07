@@ -25,8 +25,14 @@ class Notifications
 
 	showNoti: (data) =>
 		items = $.map data, (notification) ->
-			"<li style='white-space: pre-wrap;' data-behavior='notifications-link'><a class='notificationlinks' href='#{notification.url}' target='_blank'>#{notification.actor.name} #{notification.action}</a></li>"
-		items += "<li style='white-space: pre-wrap;' data-behavior='notifications-link'><a href='#'>Older Notification</a></li>"
+			"<li data-behavior='notifications-link'>
+				<a class='notificationlinks' href='#{notification.url}'>
+					<img src = '#{notification.avatar}'>
+					<p>#{notification.actor.name} #{notification.action}</p>
+				</a>
+			</li>"
+		items = items.join('<hr>')
+		items += "<li data-behavior='notifications-link'><a href='#'>Older Notification</a></li>"
 		if(data.length)
 			$('#notification-count').css('display','inline-block');
 			$('#notification-count').html(data.length);
