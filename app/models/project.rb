@@ -172,6 +172,13 @@ class Project < ActiveRecord::Base
     return similar = Project.current(@episode).active.select {|project| (project.keywords & keywords).any?}
   end
 
+  def send_notification user, message
+    recipients = project_followers - [user]
+    recipients.each do |follower|
+      Notification.create(recipient: follower, actor: user, action: message, notifiable: self)
+    end
+  end
+
   def previous(episode = nil)
     Project.by_episode(episode).where('projects.id < ?', self.id).last
   end
